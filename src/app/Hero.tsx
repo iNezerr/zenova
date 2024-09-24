@@ -4,33 +4,48 @@ type Props = {}
 
 const Hero = (props: Props) => {
   return (
-    <section className='grid grid-cols-2 px-20 pt-12 h-screen w-full text-wrap gap-6'>
-      <div className='m-0 p-0'>
+    <section className='grid grid-cols-2 px-20 pt-12 h-screen w-full gap-6'>
+      {/* Left Section */}
+      <div className=''>
         <h2 className='text-8xl'>
-          Maximum Quality. Minumum Cost.
+          Maximum Quality. Minimum Cost.
         </h2>
-        <button className='w-full shadow-m hover:bg-green-950  p-4
-        bg-green-900 rounded-xl bg-clip-padding backdrop-filter
-        backdrop-blur-lg bg-opacity-20'>
+        <button className='w-full mt-6 p-4 shadow-md text-white bg-green-900
+        rounded-xl transition-transform hover:scale-105 hover:bg-green-950'>
           Try Our Discount
         </button>
       </div>
+
+      {/* Right Section */}
       <div className='mx-auto mt-5 w-10/12'>
-        <div className='mb-3 p-4 bg-green-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-50'>
+        {/* Reliability Card */}
+        <div className='mb-3 p-4 bg-green-900 rounded-3xl bg-clip-padding
+        backdrop-filter backdrop-blur-md bg-opacity-50'>
           <header>
-            <h3 className="font-bold pb-2">Reliability</h3>
+            <h3 className="font-bold pb-2 text-white">Reliability</h3>
           </header>
-          <p>Quality Diesel fron the best suppliers. Here at Zenova, we have a <strong>customer-first </strong> policy
-            At whatever time you need your fuel, we've got you! You can count on us.</p>
-          <span className='hover:text-green-500 text-sm text-green-900 cursor-pointer'>Read More</span>
+          <p className='text-white'>
+            Quality Diesel from the best suppliers. Here at Zenova, we maintain
+            a <strong>customer-first</strong> policy. Whenever you need fuel,
+            we've got you! Count on us for timely deliveries.
+          </p>
+          <span className='hover:text-green-500 text-sm text-green-300
+          cursor-pointer'>Read More &rarr;</span>
         </div>
-        <div className='mb-3 p-4 bg-green-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50'>
+
+        {/* Quality Card */}
+        <div className='mb-3 p-4 bg-green-900 rounded-3xl bg-clip-padding
+        backdrop-filter backdrop-blur-lg bg-opacity-50'>
           <header>
-            <h3 className="font-bold pb-2">Reliability</h3>
+            <h3 className="font-bold pb-2 text-white">Unmatched Quality</h3>
           </header>
-          <p>Quality Diesel fron the best suppliers. Here at Zenova, we have a <strong>customer-first </strong> policy
-            At whatever time you need your fuel, we've got you! You can count on us.</p>
-          <span className='hover:text-green-500 text-sm text-green-900 cursor-pointer'>Read More</span>
+          <p className='text-white'>
+            We deliver high-quality diesel that keeps your business running at
+            peak performance. Our fuel undergoes strict quality checks,
+            ensuring consistent, superior results.
+          </p>
+          <span className='hover:text-green-500 text-sm text-green-300
+          cursor-pointer'>Read More &rarr;</span>
         </div>
       </div>
     </section>

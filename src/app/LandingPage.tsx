@@ -6,8 +6,8 @@ type Props = {}
 
 const LandingPage = (props: Props) => {
   return (
-    <div className="bg-[url('/back1.jpg')]">
-      <div className="">
+    <div className="bg-[url('/back3.jpg')] min-h-screen max-h-screen">
+      <div className="px-20 pt-12">
         <NavBar />
         <Main></Main>
         <Footer />
