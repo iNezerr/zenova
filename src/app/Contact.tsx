@@ -1,8 +1,64 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+type FormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 type Props = {};
 
 const Contact = (props: Props) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  
+  const { 
+    register, 
+    handleSubmit, 
+    reset,
+    formState: { errors } 
+  } = useForm<FormValues>();
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+      
+      // Success - clear form and show success message
+      reset();
+      setSubmitSuccess(true);
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className='w-full bg-green-900 text-white py-16 md:py-24' id="contact">
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -72,7 +128,24 @@ const Contact = (props: Props) => {
           
           {/* Contact Form */}
           <div>
-            <form className='bg-white p-8 rounded-xl shadow-lg'>
+            <form 
+              className='bg-white p-8 rounded-xl shadow-lg relative'
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className='absolute top-0 left-0 w-full bg-green-100 text-green-800 p-4 rounded-t-xl text-center font-medium'>
+                  Your message has been sent successfully! We will contact you soon.
+                </div>
+              )}
+              
+              {/* Error Message */}
+              {submitError && (
+                <div className='absolute top-0 left-0 w-full bg-red-100 text-red-800 p-4 rounded-t-xl text-center font-medium'>
+                  {submitError}
+                </div>
+              )}
+              
               <h3 className='text-2xl font-bold text-green-900 mb-6'>Send us a message</h3>
               
               <div className='mb-6'>
@@ -80,9 +153,18 @@ const Contact = (props: Props) => {
                 <input 
                   type="text" 
                   id="name"
-                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900'
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900 
+                    ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder='John Doe'
+                  {...register('name', { 
+                    required: 'Name is required',
+                    minLength: { value: 2, message: 'Name must be at least 2 characters' }
+                  })}
+                  disabled={isSubmitting}
                 />
+                {errors.name && (
+                  <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>
+                )}
               </div>
               
               <div className='mb-6'>
@@ -90,9 +172,21 @@ const Contact = (props: Props) => {
                 <input 
                   type="email" 
                   id="email"
-                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900'
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900
+                    ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder='john@example.com'
+                  {...register('email', { 
+                    required: 'Email is required',
+                    pattern: { 
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: 'Please enter a valid email'
+                    }
+                  })}
+                  disabled={isSubmitting}
                 />
+                {errors.email && (
+                  <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>
+                )}
               </div>
               
               <div className='mb-6'>
@@ -100,15 +194,34 @@ const Contact = (props: Props) => {
                 <textarea 
                   id="message"
                   rows={5}
-                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900'
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900
+                    ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder='How can we help you?'
+                  {...register('message', { 
+                    required: 'Message is required',
+                    minLength: { value: 10, message: 'Message must be at least 10 characters' }
+                  })}
+                  disabled={isSubmitting}
                 ></textarea>
+                {errors.message && (
+                  <p className='text-red-500 text-sm mt-1'>{errors.message.message}</p>
+                )}
               </div>
               
               <button 
                 type="submit"
-                className='w-full py-4 bg-green-900 text-white rounded-lg font-semibold hover:bg-green-800 transition-colors'>
-                Send Message
+                className='w-full py-4 bg-green-900 text-white rounded-lg font-semibold hover:bg-green-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed'
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className='flex items-center justify-center'>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                ) : 'Send Message'}
               </button>
             </form>
           </div>
