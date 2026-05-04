@@ -114,6 +114,9 @@ const Footer = (props: Props) => {
         <p className='mt-1'>
           Made with 💚 by <a href="https://linkedin.com/in/nezeroriginal" className='text-green-500 hover:underline'>Nezer</a>
         </p>
+        <p className='mt-2'>
+          <Link href="/privacy" className='text-gray-400 hover:text-white transition-colors'>Privacy Policy</Link>
+        </p>
       </div>
       
       {/* Back to Top Button */}
