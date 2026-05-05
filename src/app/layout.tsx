@@ -17,7 +17,15 @@ export const metadata: Metadata = {
   title: "Zenova Oil - Abuja's Trusted Diesel Partner",
   description: "Zenova Oil delivers high-quality diesel fuel directly to businesses in Abuja, Nigeria, on time, every time. Get a free quote today.",
   icons: {
-    icon: '/zenovaoil_logo.ico',
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/zenovaoil_logo.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/zenovaoil_logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/zenovaoil_logo.ico',
   },
   openGraph: {
     title: "Zenova Oil - Abuja's Trusted Diesel Partner",
