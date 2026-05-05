@@ -1,90 +1,120 @@
-import React from 'react';
-import Image from 'next/image';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 
 type Props = {};
 
 const Services = (props: Props) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    const fadeElements = sectionRef.current?.querySelectorAll('.fade-up');
+    fadeElements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const services = [
+    {
+      icon: '⛽',
+      title: 'Premium Diesel Fuel',
+      description: 'Multiple grades of high-quality diesel to suit your generators, trucks, and industrial equipment. Consistent quality, every delivery.',
+    },
+    {
+      icon: '🚚',
+      title: 'On-Site Delivery & Refueling',
+      description: 'Our delivery team comes directly to your location. No trips to the filling station. No logistics headache. Just fuel at your door.',
+    },
+    {
+      icon: '📋',
+      title: 'Bulk Supply Contracts',
+      description: 'Lock in better rates and guaranteed availability with our monthly or quarterly supply agreements. Ideal for estates, schools, and hospitals.',
+    },
+    {
+      icon: '🕐',
+      title: '24/7 Emergency Supply',
+      description: 'Running dangerously low? Call or WhatsApp us any time, day or night. We treat emergencies with the urgency they deserve.',
+    },
+  ];
+
   return (
-    <section className='w-full bg-white py-16 md:py-24' id="product-service">
+    <section ref={sectionRef} className='w-full py-24' id="product-service" style={{ background: 'var(--navy-mid)', scrollMarginTop: '80px' }}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <h2 className='text-3xl md:text-4xl font-bold text-center text-green-900 mb-16 relative'>
-          Our Products and Services
-          <span className='absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-700 rounded'></span>
-        </h2>
-        
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16'>
-          {/* Services List 1 */}
-          <div className='space-y-8'>
-            <div className='flex gap-4'>
-              <div className='flex-shrink-0 bg-green-100 w-14 h-14 rounded-full flex items-center justify-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className='text-xl font-bold text-green-900 mb-2'>High-Quality Diesel Fuel</h3>
-                <p className='text-gray-700'>
-                  We offer a variety of diesel fuel grades to meet your specific engine requirements, ensuring optimal performance and efficiency.
-                </p>
-              </div>
-            </div>
-            
-            <div className='flex gap-4'>
-              <div className='flex-shrink-0 bg-green-100 w-14 h-14 rounded-full flex items-center justify-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className='text-xl font-bold text-green-900 mb-2'>On-Site Delivery & Refueling</h3>
-                <p className='text-gray-700'>
-                  Our reliable delivery team brings the fuel directly to your location, eliminating the need for you to manage transportation.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Center Image */}
-          <div className='relative h-[300px] rounded-xl overflow-hidden shadow-xl mx-auto'>
-            <Image 
-              src="/zenova.png" 
-              alt="Zenova Oil Services" 
-              fill
-              className='object-contain'
-            />
-          </div>
+        <div className='mb-12 fade-up'>
+          <p className='text-sm font-semibold tracking-widest uppercase mb-4' style={{ color: 'var(--amber)' }}>
+            Our Services
+          </p>
+          <h2
+            className='mb-4'
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
+              letterSpacing: '1px',
+              lineHeight: '1.1',
+            }}
+          >
+            Everything You Need, <span style={{ color: 'var(--amber)', fontStyle: 'normal' }}>Delivered.</span>
+          </h2>
+          <div className='w-12 h-0.5 mb-6' style={{ background: 'var(--amber)', borderRadius: '2px' }}></div>
+          <p
+            className='text-lg'
+            style={{
+              color: 'var(--muted)',
+              maxWidth: '520px',
+              fontWeight: '300',
+            }}
+          >
+            From one-time emergency supply to recurring bulk contracts, we have a plan that fits your business.
+          </p>
         </div>
         
-        {/* Additional Services */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-          <div className='flex gap-4'>
-            <div className='flex-shrink-0 bg-green-100 w-14 h-14 rounded-full flex items-center justify-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className='text-xl font-bold text-green-900 mb-2'>24/7 Customer Support</h3>
-              <p className='text-gray-700'>
-                Our dedicated customer support team is available 24/7 to answer your questions and address any concerns promptly.
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 fade-up'>
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className='p-8 rounded-lg relative overflow-hidden transition-all duration-200'
+              style={{
+                background: 'var(--navy-card)',
+                border: '1px solid var(--border)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-amber)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <div
+                className='w-12 h-12 rounded-lg flex items-center justify-center mb-5'
+                style={{
+                  background: 'var(--amber-glow)',
+                  border: '1px solid var(--border-amber)',
+                  fontSize: '1.4rem',
+                }}
+              >
+                {service.icon}
+              </div>
+              <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--white)' }}>
+                {service.title}
+              </h3>
+              <p className='text-sm' style={{ color: 'var(--muted)' }}>
+                {service.description}
               </p>
             </div>
-          </div>
-          
-          <div className='flex gap-4'>
-            <div className='flex-shrink-0 bg-green-100 w-14 h-14 rounded-full flex items-center justify-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className='text-xl font-bold text-green-900 mb-2'>Competitive Pricing & Flexible Payment Options</h3>
-              <p className='text-gray-700'>
-                We offer competitive fuel prices and flexible payment plans to fit your budget. Get a free quote today and discover the Zenova Oil difference.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

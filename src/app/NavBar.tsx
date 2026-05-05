@@ -1,7 +1,7 @@
 "use client"
-import Image from 'next/image'
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -19,127 +19,138 @@ const NavBar = (props: Props) => {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-2xl border border-green-800/30 transition-all duration-300
-        ${scrolled
-          ? 'w-[95%] sm:w-[90%] md:w-[70%] md:sm:w-[60%] bg-green-950 bg-opacity-95 backdrop-blur-lg shadow-2xl h-12 md:h-14 py-0'
-          : 'w-[95%] sm:w-[90%] md:w-[95%] md:sm:w-[90%] bg-green-900 bg-opacity-90 backdrop-blur-md shadow-lg h-12 md:h-14 py-0'}
-      `}
+      className={`fixed top-0 left-0 right-0 transition-all duration-300`}
+      style={{
+        zIndex: 1000,
+        padding: '1rem 5%',
+        background: 'rgba(7,13,26,0.85)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid var(--border)',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 py-0">
-        <div className="flex justify-between items-center transition-all duration-300 h-12 md:h-14">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Image 
-              src="/zenovaoil_logo.png" 
-              alt="Zenova Oil Logo" 
-              width={scrolled ? 36 : 50}
-              height={scrolled ? 28 : 40}
-              className={`mr-2 transition-all duration-300 ${scrolled ? 'scale-90' : ''}`}
-            />
-            <span className={`text-white font-bold drop-shadow-sm transition-all duration-300 ${scrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>Zenova Oil</span>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className={`hidden md:flex items-center space-x-8 transition-all duration-300 ${scrolled ? 'text-sm' : 'text-base'}`}>
-            <Link href="#home" className="text-white hover:text-green-200 px-3 py-2 text-sm font-medium transition-colors relative hover:after:w-full after:absolute after:w-0 after:h-0.5 after:bg-green-200 after:bottom-0 after:left-0 after:transition-all after:duration-300">
-              Home
-            </Link>
-            <Link href="#why-zenova" className="text-white hover:text-green-200 px-3 py-2 text-sm font-medium transition-colors relative hover:after:w-full after:absolute after:w-0 after:h-0.5 after:bg-green-200 after:bottom-0 after:left-0 after:transition-all after:duration-300">
-              Why Zenova?
-            </Link>
-            <Link href="#how-zenova" className="text-white hover:text-green-200 px-3 py-2 text-sm font-medium transition-colors relative hover:after:w-full after:absolute after:w-0 after:h-0.5 after:bg-green-200 after:bottom-0 after:left-0 after:transition-all after:duration-300">
-              How Zenova?
-            </Link>
-            <Link href="#product-service" className="text-white hover:text-green-200 px-3 py-2 text-sm font-medium transition-colors relative hover:after:w-full after:absolute after:w-0 after:h-0.5 after:bg-green-200 after:bottom-0 after:left-0 after:transition-all after:duration-300">
-              Our Offers
-            </Link>
-            <Link href="#contact" className="text-white hover:text-green-200 px-3 py-2 text-sm font-medium transition-colors relative hover:after:w-full after:absolute after:w-0 after:h-0.5 after:bg-green-200 after:bottom-0 after:left-0 after:transition-all after:duration-300">
-              Contact Us
-            </Link>
-          </div>
-          
-          {/* CTA Button */}
-          <div className={`hidden md:block transition-all duration-300 ${scrolled ? 'scale-90' : ''}`}> 
-            <Link 
-              href="#contact" 
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-green-900 bg-white hover:bg-green-50 transition-all hover:scale-105 backdrop-filter backdrop-blur-sm"
-            >
-              Get A Discount
-            </Link>
-          </div>
-          
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button 
-              type="button" 
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-green-200 hover:bg-green-800/50 focus:outline-none transition-all"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+      <div className="flex justify-between items-center">
+        {/* Logo */}
+        <Link href="#home" className="flex items-center gap-2" style={{ textDecoration: 'none' }}>
+          <Image 
+            src="/zenovaoil_logo.png" 
+            alt="Zenova Oil Logo" 
+            width={100}
+            height={10}
+            className="object-contain"
+          />
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <div className={`hidden md:flex items-center gap-8`}>
+          <Link href="#why-zenova" className="text-sm font-medium transition-colors" style={{ color: 'var(--muted)', letterSpacing: '0.5px', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}>
+            Why Zenova
+          </Link>
+          <Link href="#testimonials" className="text-sm font-medium transition-colors" style={{ color: 'var(--muted)', letterSpacing: '0.5px', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}>
+            Clients
+          </Link>
+          <Link href="#product-service" className="text-sm font-medium transition-colors" style={{ color: 'var(--muted)', letterSpacing: '0.5px', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}>
+            Services
+          </Link>
+          <Link href="#contact" className="text-sm font-medium transition-colors" style={{ color: 'var(--muted)', letterSpacing: '0.5px', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--white)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}>
+            Contact
+          </Link>
+        </div>
+        
+        {/* CTA Button */}
+        <div className={`hidden md:block`}> 
+          <Link 
+            href="https://order.zenovaoil.com.ng/"
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center justify-center px-5 py-2 rounded font-semibold text-sm tracking-wide transition-all hover:-translate-y-0.5"
+            style={{
+              background: 'var(--amber)',
+              color: 'var(--navy)',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#FFB733';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--amber)';
+            }}
+          >
+            Order Now ↗
+          </Link>
+        </div>
+        
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button 
+            type="button" 
+            className="flex flex-col gap-1.5 cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="block w-6 h-0.5 rounded transition-all" style={{ background: 'var(--white)' }}></span>
+            <span className="block w-6 h-0.5 rounded transition-all" style={{ background: 'var(--white)' }}></span>
+            <span className="block w-6 h-0.5 rounded transition-all" style={{ background: 'var(--white)' }}></span>
+          </button>
         </div>
       </div>
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden bg-green-900 bg-opacity-90 backdrop-blur-md rounded-2xl border-green-800/30
-          transition-all duration-500 ease-in-out
-          pb-2 mt-3
+        className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out pb-2 mt-3
           ${menuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-2 pointer-events-none'}`}
         style={{
+          background: 'var(--navy-mid)',
+          borderBottom: '1px solid var(--border)',
           transitionProperty: 'max-height, opacity, transform',
         }}
       >
-        <div className="px-2 space-y-1 sm:px-3">
-          <Link 
-            href="#home" 
-            className={`text-white hover:bg-green-800/50 block px-3 py-2 rounded-md font-medium transition-all ${scrolled ? 'text-sm' : 'text-base'}`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </Link>
+        <div className="flex flex-col gap-4 px-4">
           <Link 
             href="#why-zenova" 
-            className={`text-white hover:bg-green-800/50 block px-3 py-2 rounded-md font-medium transition-all ${scrolled ? 'text-sm' : 'text-base'}`}
+            className="text-sm font-medium transition-colors"
+            style={{ color: 'var(--white)', textDecoration: 'none' }}
             onClick={() => setMenuOpen(false)}
           >
-            Why Zenova?
+            Why Zenova
           </Link>
           <Link 
-            href="#how-zenova" 
-            className={`text-white hover:bg-green-800/50 block px-3 py-2 rounded-md font-medium transition-all ${scrolled ? 'text-sm' : 'text-base'}`}
+            href="#testimonials" 
+            className="text-sm font-medium transition-colors"
+            style={{ color: 'var(--white)', textDecoration: 'none' }}
             onClick={() => setMenuOpen(false)}
           >
-            How Zenova?
+            Clients
           </Link>
           <Link 
             href="#product-service" 
-            className={`text-white hover:bg-green-800/50 block px-3 py-2 rounded-md font-medium transition-all ${scrolled ? 'text-sm' : 'text-base'}`}
+            className="text-sm font-medium transition-colors"
+            style={{ color: 'var(--white)', textDecoration: 'none' }}
             onClick={() => setMenuOpen(false)}
           >
-            Our Offers
+            Services
           </Link>
           <Link 
             href="#contact" 
-            className={`text-white hover:bg-green-800/50 block px-3 py-2 rounded-md font-medium transition-all ${scrolled ? 'text-sm' : 'text-base'}`}
+            className="text-sm font-medium transition-colors"
+            style={{ color: 'var(--white)', textDecoration: 'none' }}
             onClick={() => setMenuOpen(false)}
           >
-            Contact Us
+            Contact
           </Link>
           <Link 
-            href="#contact" 
-            className={`bg-white text-green-900 hover:bg-green-50 block px-3 py-2 rounded-md text-center transition-all shadow-sm backdrop-filter backdrop-blur-sm ${scrolled ? 'text-sm' : 'text-base'}`}
+            href="https://order.zenovaoil.com.ng/"
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center justify-center px-5 py-2 rounded font-semibold text-sm tracking-wide transition-all"
+            style={{
+              background: 'var(--amber)',
+              color: 'var(--navy)',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+            }}
             onClick={() => setMenuOpen(false)}
           >
-            Get A Discount
+            Order Now ↗
           </Link>
         </div>
       </div>

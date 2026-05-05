@@ -1,67 +1,124 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 type Props = {};
 
 const WhyUs = (props: Props) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    const fadeElements = sectionRef.current?.querySelectorAll('.fade-up');
+    fadeElements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const features = [
+    {
+      title: 'Reliable Deliveries, Every Time',
+      description: 'We deliver high-quality diesel directly to your business, on schedule. No excuses, no delays, just fuel when you need it.',
+    },
+    {
+      title: 'Zero Downtime Guarantee',
+      description: 'Our proactive supply management means you\'ll never scramble for fuel mid-operations again. We monitor your needs so you don\'t have to.',
+    },
+    {
+      title: 'Transparent, Competitive Pricing',
+      description: 'No hidden charges. We offer clear, competitive per-litre pricing with flexible payment plans designed to fit your operational budget.',
+    },
+  ];
+
   return (
-    <section className='bg-white w-full py-16 md:py-24' id="why-zenova">
+    <section ref={sectionRef} className='w-full py-24' id="why-zenova" style={{ background: 'var(--navy-mid)', scrollMarginTop: '80px' }}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <h2 className='text-3xl md:text-4xl font-bold text-center text-green-900 mb-16 relative'>
-          Why Choose Zenova Oil?
-          <span className='absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-700 rounded'></span>
-        </h2>
-        
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center fade-up'>
           {/* Image Section */}
-          <div className='relative'>
-            <div className='relative h-[300px] sm:h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg'>
-              <Image 
-                src="/zenova3.jpg" 
-                alt="Why choose Zenova Oil" 
-                fill
-                className='object-cover'
-              />
-            </div>
-            <div className='absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-green-900 hidden md:flex items-center justify-center text-white'>
-              <div className='text-center'>
-                <p className='font-bold text-xl'>100%</p>
-                <p className='text-sm'>Customer Satisfaction</p>
-              </div>
-            </div>
+          <div className='relative rounded-lg overflow-hidden' style={{ aspectRatio: '4/3' }}>
+            <Image 
+              src="/zenova3.jpg" 
+              alt="Zenova Oil diesel delivery truck" 
+              fill
+              className='object-cover'
+              style={{ filter: 'saturate(0.7)' }}
+            />
+            <div
+              className='absolute inset-0'
+              style={{
+                background: 'linear-gradient(to top right, rgba(245,166,35,0.2), transparent)',
+              }}
+            ></div>
           </div>
           
           {/* Content Section */}
           <div>
-            <p className='text-gray-700 text-lg mb-8'>
-              Power your business with confidence. Zenova Oil delivers high-quality diesel fuel directly to you, 
-              ensuring reliable performance and on-time service. We're Abuja's trusted partner for businesses 
-              that keep the city running.
+            <p className='text-sm font-semibold tracking-widest uppercase mb-4' style={{ color: 'var(--amber)' }}>
+              Why Choose Us
             </p>
-            <p className='text-gray-700 text-lg mb-8'>
-              Get a discount today and see the Zenova difference.
+            <h2
+              className='mb-4'
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
+                letterSpacing: '1px',
+                lineHeight: '1.1',
+              }}
+            >
+              Abuja's Most <span style={{ color: 'var(--amber)', fontStyle: 'normal' }}>Reliable</span> Diesel Partner
+            </h2>
+            <div className='w-12 h-0.5 mb-6' style={{ background: 'var(--amber)', borderRadius: '2px' }}></div>
+            <p
+              className='mb-8 text-lg'
+              style={{
+                color: 'var(--muted)',
+                maxWidth: '520px',
+                fontWeight: '300',
+              }}
+            >
+              Power your business with confidence. From procurement to doorstep delivery, we handle every step so you can focus on what matters most.
             </p>
             
-            {/* Stats */}
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8'>
-              <div className='p-4 bg-green-50 rounded-lg shadow-md text-center'>
-                <p className='text-3xl font-bold text-green-900'>231+</p>
-                <p className='text-sm text-gray-700'>Litres Delivered and Counting!</p>
-              </div>
-              <div className='p-4 bg-green-50 rounded-lg shadow-md text-center'>
-                <p className='text-3xl font-bold text-green-900'>99.8%</p>
-                <p className='text-sm text-gray-700'>On-Time Delivery Rate</p>
-              </div>
-              <div className='p-4 bg-green-50 rounded-lg shadow-md text-center'>
-                <p className='text-3xl font-bold text-green-900'>21+</p>
-                <p className='text-sm text-gray-700'>Successful Deliveries</p>
-              </div>
+            {/* Feature Cards */}
+            <div className='flex flex-col gap-6'>
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className='p-5 rounded transition-colors duration-200'
+                  style={{
+                    background: 'var(--navy-card)',
+                    border: '1px solid var(--border)',
+                    borderLeft: '3px solid var(--amber)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(20,30,48,0.9)';
+                    e.currentTarget.style.borderLeftColor = '#FFB733';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'var(--navy-card)';
+                    e.currentTarget.style.borderLeftColor = 'var(--amber)';
+                  }}
+                >
+                  <h3 className='text-base font-semibold mb-1' style={{ color: 'var(--white)' }}>
+                    {feature.title}
+                  </h3>
+                  <p className='text-sm' style={{ color: 'var(--muted)' }}>
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
-            
-            <button className='px-8 py-4 bg-green-900 text-white rounded-xl shadow-lg hover:bg-green-800 
-                transition-all transform hover:scale-105 font-semibold'>
-              Contact Us Today
-            </button>
           </div>
         </div>
       </div>

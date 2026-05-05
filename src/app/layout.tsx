@@ -14,8 +14,22 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Zenova Oil",
-  description: "best diesel oil distributor in Nigeria",
+  title: "Zenova Oil - Abuja's Trusted Diesel Partner",
+  description: "Zenova Oil delivers high-quality diesel fuel directly to businesses in Abuja, Nigeria, on time, every time. Get a free quote today.",
+  icons: {
+    icon: '/zenovaoil_logo.ico',
+  },
+  openGraph: {
+    title: "Zenova Oil - Abuja's Trusted Diesel Partner",
+    description: "Premium diesel delivered to your door. Serving businesses across Abuja and the FCT.",
+    url: "https://www.zenovaoil.com.ng",
+    siteName: "Zenova Oil",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zenova Oil - Abuja's Trusted Diesel Partner",
+    description: "Premium diesel delivered to your door. Serving businesses across Abuja and the FCT.",
+  },
 };
 
 export default function RootLayout({

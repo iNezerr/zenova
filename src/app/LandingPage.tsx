@@ -2,17 +2,17 @@ import React from 'react'
 import NavBar from './NavBar'
 import Main from './Main'
 import Footer from './Footer'
-import SupportButton from './SupportButton'
+import WhatsAppButton from './WhatsAppButton'
 
 type Props = {}
 
 const LandingPage = (props: Props) => {
   return (
-    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden" style={{ background: 'var(--navy)' }}>
       <NavBar />
       <Main />
       <Footer />
-      <SupportButton />
+      <WhatsAppButton />
     </div>
   )
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 import Hero from './Hero'
 import WhyUs from './WhyUs'
-import HowWeSolve from './HowWeSolve'
+import Testimonials from './Testimonials'
 import Services from './Services'
+import TrustSignals from './TrustSignals'
+import OrderAppSection from './OrderAppSection'
 import Contact from './Contact'
 
 type Props = {}
@@ -12,8 +14,10 @@ const Main = (props: Props) => {
     <main className="pt-16 md:pt-20">
       <Hero />
       <WhyUs />
-      <HowWeSolve />
+      <Testimonials />
       <Services />
+      <TrustSignals />
+      <OrderAppSection />
       <Contact />
     </main>
   )

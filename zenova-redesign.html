@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Zenova Oil delivers high-quality diesel fuel directly to businesses in Abuja, Nigeria — on time, every time. Get a free quote today." />
+<title>Zenova Oil — Abuja's Trusted Diesel Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #070D1A;
+    --navy-mid: #101828;
+    --navy-card: #141E30;
+    --amber: #F5A623;
+    --amber-dark: #C4851A;
+    --amber-glow: rgba(245,166,35,0.12);
+    --white: #F7F2EA;
+    --muted: #8A96A8;
+    --border: rgba(255,255,255,0.08);
+    --border-amber: rgba(245,166,35,0.3);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ─────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--amber-dark); border-radius: 3px; }
+
+  /* ── NAV ────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(7,13,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .nav-logo span { color: var(--amber); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .btn-nav {
+    background: var(--amber); color: var(--navy);
+    padding: 0.55rem 1.4rem; border-radius: 4px;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.5px;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-nav:hover { background: #FFB733; transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+  /* ── HERO ────────────────────────────────────── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 5% 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://www.zenovaoil.com.ng/_next/image?url=%2Fback3.jpg&w=1920&q=80') center/cover no-repeat;
+    opacity: 0.18;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--navy) 40%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 700px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--amber-glow); border: 1px solid var(--border-amber);
+    color: var(--amber); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 8vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--amber); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted); max-width: 520px;
+    margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--amber); color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: #FFB733; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.3); }
+  .btn-secondary {
+    background: transparent; color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 4px;
+    border: 1px solid var(--border); font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem; flex-wrap: wrap;
+  }
+  .stat-item { border-left: 3px solid var(--amber); padding-left: 1rem; }
+  .stat-num { font-family: var(--font-display); font-size: 2.2rem; color: var(--white); line-height: 1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.5px; margin-top: 0.2rem; }
+
+  /* ── SECTION BASE ────────────────────────────── */
+  section { padding: 6rem 5%; }
+  .section-tag {
+    display: inline-block; color: var(--amber);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    letter-spacing: 1px; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  h2 em { color: var(--amber); font-style: normal; }
+  .section-sub { color: var(--muted); max-width: 520px; font-weight: 300; margin-bottom: 3rem; }
+  .divider { width: 48px; height: 3px; background: var(--amber); border-radius: 2px; margin: 1rem 0 2rem; }
+
+  /* ── WHY ZENOVA ──────────────────────────────── */
+  #why-zenova { background: var(--navy-mid); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .why-img-wrap { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+  .why-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7); }
+  .why-img-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top right, rgba(245,166,35,0.2), transparent);
+  }
+  .why-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .feature-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 1.25rem 1.5rem; border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .feature-card:hover { background: rgba(20,30,48,0.9); border-left-color: #FFB733; }
+  .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .feature-card p { font-size: 0.9rem; color: var(--muted); }
+
+  /* ── TESTIMONIALS ─────────────────────────────── */
+  #testimonials { background: var(--navy); }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .testimonial-card:hover { border-color: var(--border-amber); }
+  .stars { color: var(--amber); font-size: 1rem; letter-spacing: 2px; }
+  .testimonial-text { color: var(--white); font-size: 0.95rem; line-height: 1.7; flex: 1; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--amber-glow); border: 1px solid var(--border-amber);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem; color: var(--amber); flex-shrink: 0;
+  }
+  .author-name { font-weight: 600; font-size: 0.9rem; }
+  .author-role { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── SERVICES ────────────────────────────────── */
+  #product-service { background: var(--navy-mid); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .service-card:hover { border-color: var(--border-amber); transform: translateY(-3px); }
+  .service-icon {
+    width: 48px; height: 48px; border-radius: 8px;
+    background: var(--amber-glow); border: 1px solid var(--border-amber);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.25rem;
+  }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .service-card p { font-size: 0.9rem; color: var(--muted); }
+
+  /* ── TRUST ───────────────────────────────────── */
+  #trust { background: var(--navy); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+  .trust-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem 1.25rem;
+  }
+  .trust-card .trust-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .trust-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .trust-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── CONTACT ─────────────────────────────────── */
+  #contact { background: var(--navy-mid); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.25rem; background: var(--navy-card);
+    border: 1px solid var(--border); border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--border-amber); }
+  .contact-item-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--amber-glow); border: 1px solid var(--border-amber);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0; color: var(--amber);
+  }
+  .contact-item-text { flex: 1; }
+  .contact-item-text small { display: block; color: var(--muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .contact-item-text a, .contact-item-text span { color: var(--white); font-weight: 500; text-decoration: none; font-size: 0.95rem; }
+  .contact-item-text a:hover { color: var(--amber); }
+  .social-row { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+  .social-btn {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--navy-card); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 700;
+    transition: all 0.2s;
+  }
+  .social-btn:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* ── FORM ────────────────────────────────────── */
+  .contact-form { background: var(--navy-card); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem; }
+  .form-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--muted); letter-spacing: 0.5px; }
+  .form-group input, .form-group textarea, .form-group select {
+    background: var(--navy); border: 1px solid var(--border);
+    color: var(--white); border-radius: 4px; padding: 0.75rem 1rem;
+    font-family: var(--font-body); font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--amber); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select option { background: var(--navy-card); }
+  .btn-submit {
+    width: 100%; padding: 1rem; background: var(--amber); color: var(--navy);
+    border: none; border-radius: 4px; font-family: var(--font-body);
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .btn-submit:hover { background: #FFB733; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .form-success {
+    display: none; text-align: center; padding: 2rem;
+    color: #4ade80; font-size: 0.95rem;
+  }
+  .form-success .success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer { background: var(--navy); border-top: 1px solid var(--border); padding: 4rem 5% 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { color: var(--muted); font-size: 0.9rem; margin-top: 0.75rem; max-width: 260px; line-height: 1.7; }
+  .footer-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 2px; }
+  .footer-logo span { color: var(--amber); }
+  .footer-col h4 { font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { color: var(--muted); font-size: 0.82rem; }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--amber); }
+
+  /* ── WHATSAPP FLOAT ──────────────────────────── */
+  .whatsapp-btn {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+  .whatsapp-btn svg { width: 28px; height: 28px; fill: white; }
+  .whatsapp-tooltip {
+    position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
+    background: var(--navy-card); color: var(--white); border: 1px solid var(--border);
+    padding: 0.4rem 0.9rem; border-radius: 4px; font-size: 0.82rem; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .whatsapp-btn:hover .whatsapp-tooltip { opacity: 1; }
+
+  /* ── BACK TO TOP ─────────────────────────────── */
+  .back-top {
+    position: fixed; bottom: 5.5rem; right: 2.1rem; z-index: 200;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--navy-card); border: 1px solid var(--border);
+    color: var(--amber); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.1rem; text-decoration: none;
+    transition: all 0.2s; opacity: 0;
+  }
+  .back-top.visible { opacity: 1; }
+  .back-top:hover { background: var(--amber); color: var(--navy); }
+
+  /* ── ANIMATIONS ──────────────────────────────── */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ──────────────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--navy-mid); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .why-grid, .contact-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">ZENOVA<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#why-zenova">Why Zenova</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#product-service">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/2347060502621?text=Hello%20Zenova%20Oil%2C%20I'd%20like%20to%20get%20a%20quote" class="btn-nav" target="_blank" rel="noopener">Get a Quote ↗</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Now serving Abuja & FCT</div>
+    <h1>Never Run <em>Dry.</em><br>Power Your Business.</h1>
+    <p class="hero-sub">Zenova Oil delivers premium diesel directly to your doorstep — on schedule, every time. Trusted by businesses across Abuja that can't afford downtime.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/2347060502621?text=Hello%20Zenova%20Oil%2C%20I'd%20like%20to%20get%20a%20quote" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+      <a href="#why-zenova" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">98%+</div>
+        <div class="stat-label">On-Time Delivery Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Customer Support</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Abuja</div>
+        <div class="stat-label">FCT Coverage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ZENOVA ── -->
+<section id="why-zenova">
+  <div class="why-grid fade-up">
+    <div class="why-img-wrap">
+      <img src="https://www.zenovaoil.com.ng/_next/image?url=%2Fzenova3.jpg&w=1200&q=80" alt="Zenova Oil diesel delivery truck" loading="lazy" />
+    </div>
+    <div>
+      <p class="section-tag">Why Choose Us</p>
+      <h2>Abuja's Most <em>Reliable</em> Diesel Partner</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Power your business with confidence. From procurement to doorstep delivery, we handle every step so you can focus on what matters most.</p>
+      <div class="why-features">
+        <div class="feature-card">
+          <h3>Reliable Deliveries, Every Time</h3>
+          <p>We deliver high-quality diesel directly to your business, on schedule. No excuses, no delays — just fuel when you need it.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Zero Downtime Guarantee</h3>
+          <p>Our proactive supply management means you'll never scramble for fuel mid-operations again. We monitor your needs so you don't have to.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Transparent, Competitive Pricing</h3>
+          <p>No hidden charges. We offer clear, competitive per-litre pricing with flexible payment plans designed to fit your operational budget.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials">
+  <div style="text-align: center; margin-bottom: 3.5rem;" class="fade-up">
+    <p class="section-tag">Client Testimonials</p>
+    <h2>Trusted by Abuja's <em>Leading</em> Businesses</h2>
+    <div class="divider" style="margin: 1rem auto 0;"></div>
+  </div>
+  <div class="testimonial-grid fade-up">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Since switching to Zenova, we've had zero generator-related downtime at our facility. Their team is professional, punctual, and responsive — exactly what we needed."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AO</div>
+        <div>
+          <div class="author-name">Adaeze Okonkwo</div>
+          <div class="author-role">Operations Manager, Garki Hotel</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"We process sensitive documents around the clock. Before Zenova, fuel gaps were a serious risk. Now our generators run 24/7 without a hitch. Highly recommended."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">BM</div>
+        <div>
+          <div class="author-name">Babatunde Musa</div>
+          <div class="author-role">CEO, Musa & Associates (Law Firm)</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Fast responses, quality fuel, and they actually show up when they say they will. That alone puts them miles ahead of every other supplier I've dealt with in Abuja."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">EN</div>
+        <div>
+          <div class="author-name">Emeka Nwachukwu</div>
+          <div class="author-role">Facilities Lead, TechHub Abuja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="product-service">
+  <div class="fade-up">
+    <p class="section-tag">Our Services</p>
+    <h2>Everything You Need, <em>Delivered.</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">From one-time emergency supply to recurring bulk contracts — we have a plan that fits your business.</p>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon">⛽</div>
+      <h3>Premium Diesel Fuel</h3>
+      <p>Multiple grades of high-quality diesel to suit your generators, trucks, and industrial equipment. Consistent quality, every delivery.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚚</div>
+      <h3>On-Site Delivery & Refueling</h3>
+      <p>Our delivery team comes directly to your location. No trips to the filling station. No logistics headache. Just fuel at your door.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Bulk Supply Contracts</h3>
+      <p>Lock in better rates and guaranteed availability with our monthly or quarterly supply agreements. Ideal for estates, schools, and hospitals.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🕐</div>
+      <h3>24/7 Emergency Supply</h3>
+      <p>Running dangerously low? Call or WhatsApp us any time, day or night. We treat emergencies with the urgency they deserve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<section id="trust">
+  <div style="text-align: center; margin-bottom: 3rem;" class="fade-up">
+    <p class="section-tag">Why We're Trustworthy</p>
+    <h2>Built on <em>Reliability</em></h2>
+    <div class="divider" style="margin: 1rem auto 0;"></div>
+  </div>
+  <div class="trust-grid fade-up">
+    <div class="trust-card">
+      <div class="trust-icon">🛡️</div>
+      <h3>Quality Guaranteed</h3>
+      <p>We source only certified, undiluted diesel. Your equipment is protected.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">📍</div>
+      <h3>Abuja-Based Team</h3>
+      <p>We live and operate here. Fast local response, no long-distance delays.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">💬</div>
+      <h3>Real Support</h3>
+      <p>Speak to a real person, not a chatbot. WhatsApp, call, or email — always.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">💰</div>
+      <h3>No Hidden Fees</h3>
+      <p>Transparent pricing upfront. What you're quoted is exactly what you pay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="fade-up" style="margin-bottom: 3rem;">
+    <p class="section-tag">Get in Touch</p>
+    <h2>Request a <em>Quote</em> Today</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Tell us about your fuel needs and we'll get back to you within the hour during business hours.</p>
+  </div>
+  <div class="contact-grid fade-up">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <small>Phone / WhatsApp</small>
+          <a href="tel:+2347060502621">+234 706 050 2621</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <small>Email</small>
+          <a href="mailto:hello@zenovaoil.com.ng">hello@zenovaoil.com.ng</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">
+          <small>Location</small>
+          <span>Abuja, Federal Capital Territory, Nigeria</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div class="contact-item-text">
+          <small>Support Hours</small>
+          <span>24/7 — We're always available</span>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Follow Us</p>
+        <div class="social-row">
+          <a href="https://facebook.com/zenovaoil" class="social-btn" target="_blank" rel="noopener" title="Facebook">f</a>
+          <a href="https://instagram.com/zenovaoil" class="social-btn" target="_blank" rel="noopener" title="Instagram">in</a>
+          <a href="https://x.com/zenovaoil" class="social-btn" target="_blank" rel="noopener" title="X (Twitter)">𝕏</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <p class="form-title">Send us a message</p>
+      <div id="formSuccess" class="form-success">
+        <span class="success-icon">✅</span>
+        <p style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">Message sent!</p>
+        <p style="color: var(--muted); font-size: 0.9rem;">We'll get back to you within the hour.</p>
+      </div>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="e.g. Emeka Obi" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+234 800 000 0000" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service">
+            <option value="">Select a service...</option>
+            <option>One-Time Diesel Delivery</option>
+            <option>Recurring Monthly Supply</option>
+            <option>Bulk Contract Agreement</option>
+            <option>Emergency Fuel Supply</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Briefly describe your fuel needs — quantity, location, frequency..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">ZENOVA<span>.</span></div>
+      <p>Proudly serving Abuja's businesses with dependable diesel solutions. Reliable, transparent, and always on time.</p>
+      <div class="social-row" style="margin-top: 1rem;">
+        <a href="https://facebook.com/zenovaoil" class="social-btn" target="_blank" rel="noopener">f</a>
+        <a href="https://instagram.com/zenovaoil" class="social-btn" target="_blank" rel="noopener">in</a>
+        <a href="https://x.com/zenovaoil" class="social-btn" target="_blank" rel="noopener">𝕏</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#why-zenova">Why Zenova?</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#product-service">Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#product-service">Premium Diesel</a></li>
+        <li><a href="#product-service">On-Site Delivery</a></li>
+        <li><a href="#product-service">Bulk Contracts</a></li>
+        <li><a href="#product-service">Emergency Supply</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+2347060502621">+234 706 050 2621</a></li>
+        <li><a href="mailto:hello@zenovaoil.com.ng">hello@zenovaoil.com.ng</a></li>
+        <li><a href="#contact">Abuja, Nigeria</a></li>
+        <li><a href="#contact">24/7 Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Zenova Oil. All rights reserved.</p>
+    <div style="display: flex; gap: 1.5rem;">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="#contact">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a href="https://wa.me/2347060502621?text=Hello%20Zenova%20Oil%2C%20I%20need%20a%20diesel%20quote" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="whatsapp-tooltip">Chat with us!</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<a href="#home" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    setTimeout(() => {
+      document.getElementById('contactForm').style.display = 'none';
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+    }, 1200);
+  }
+</script>
+</body>
+</html>
