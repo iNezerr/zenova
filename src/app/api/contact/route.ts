@@ -10,7 +10,11 @@ const isValidEmail = (email: string): boolean => {
 };
 
 // Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
+if (!resendApiKey) {
+  throw new Error('RESEND_API_KEY environment variable is not set');
+}
+const resend = new Resend(resendApiKey);
 
 export async function POST(request: Request) {
   try {
