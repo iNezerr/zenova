@@ -34,7 +34,7 @@ const NavBar = (props: Props) => {
           <Image 
             src="/zenovaoil_logo.png" 
             alt="Zenova Oil Logo" 
-            width={100}
+            width={50}
             height={10}
             className="object-contain"
           />
